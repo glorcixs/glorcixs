@@ -1,0 +1,60 @@
+class Computer:
+    def __init__(self, brand, cpu_speed, ram_size):
+        self.brand = brand
+        self.cpu_speed = cpu_speed
+        self.ram_size = ram_size
+        self.powered_on = False
+
+    def turn_on(self):
+        self.powered_on = True
+        print(f"{self.brand} computer is now powered on.")
+
+    def turn_off(self):
+        self.powered_on = False
+        print(f"{self.brand} computer is now powered off.")
+
+
+class Phone:
+    def __init__(self, brand, screen_size, battery_capacity):
+        self.brand = brand
+        self.screen_size = screen_size
+        self.battery_capacity = battery_capacity
+        self.powered_on = False
+
+    def turn_on(self):
+        self.powered_on = True
+        print(f"{self.brand} phone is now powered on.")
+
+    def turn_off(self):
+        self.powered_on = False
+        print(f"{self.brand} phone is now powered off.")
+
+
+class SmartDevice(Computer, Phone):
+    def __init__(self, brand, cpu_speed, ram_size, screen_size, battery_capacity):
+        # Ініціалізація властивостей від обох батьківських класів
+        Computer.__init__(self, brand, cpu_speed, ram_size)
+        Phone.__init__(self, brand, screen_size, battery_capacity)
+
+        self.smart_mode = False
+
+    def enable_smart_mode(self):
+        self.smart_mode = True
+        print(f"{self.brand} Smart Device is now in smart mode.")
+
+    def disable_smart_mode(self):
+        self.smart_mode = False
+        print(f"{self.brand} Smart Device is now in regular mode.")
+
+
+if __name__ == "__main__":
+    my_smart_device = SmartDevice(brand="MyBrand", cpu_speed="2.5 GHz", ram_size="8 GB", screen_size="6 inches", battery_capacity="3000 mAh")
+
+    my_smart_device.turn_on()
+    my_smart_device.enable_smart_mode()
+
+    print(f"Smart Device Info - Brand: {my_smart_device.brand}, CPU Speed: {my_smart_device.cpu_speed}, RAM Size: {my_smart_device.ram_size}")
+    print(f"Screen Size: {my_smart_device.screen_size}, Battery Capacity: {my_smart_device.battery_capacity}")
+
+    my_smart_device.turn_off()
+    my_smart_device.disable_smart_mode()
