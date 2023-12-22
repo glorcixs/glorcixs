@@ -1,0 +1,53 @@
+class Pet:
+    def __init__(self, name, species, age):
+        self.name = name
+        self.species = species
+        self.age = age
+        self.health = 10  # початковий рівень здоров'я
+
+    def make_sound(self):
+        pass  # абстрактний метод, кожен вид домашнього улюбленця має свій власний звук
+
+    def visit_vet(self, vet_clinic):
+        print(f"{self.name} is visiting the vet clinic.")
+        vet_clinic.examine_pet(self)
+        
+
+class Dog(Pet):
+    def __init__(self, name, age, breed):
+        super().__init__(name, species="Dog", age=age)
+        self.breed = breed
+
+    def make_sound(self):
+        print(f"{self.name} says: Woof!")
+
+        
+class Cat(Pet):
+    def __init__(self, name, age, color):
+        super().__init__(name, species="Cat", age=age)
+        self.color = color
+
+    def make_sound(self):
+        print(f"{self.name} says: Meow!")
+
+
+class VetClinic:
+    def __init__(self, name):
+        self.name = name
+
+    def examine_pet(self, pet):
+        print(f"{pet.name} is being examined by the vet.")
+        pet.health += 1
+        print(f"{pet.name}'s health is now {pet.health}.")
+
+if __name__ == "__main__":
+    my_dog = Dog(name="Buddy", age=3, breed="Golden Retriever")
+    my_cat = Cat(name="Whiskers", age=2, color="Orange")
+
+    vet_clinic = VetClinic(name="Happy Paws Clinic")
+
+    my_dog.make_sound()
+    my_cat.make_sound()
+
+    my_dog.visit_vet(vet_clinic)
+    my_cat.visit_vet(vet_clinic)
