@@ -1,0 +1,16 @@
+class SimsSimulation:
+    def __init__(self):
+        self.log_file = open('simulation_log.txt', 'w')
+
+    def log_event(self, event):
+        timestamp = get_current_timestamp()  # Функція для отримання поточного часу
+        log_message = f"{timestamp}: {event}\n"
+        self.log_file.write(log_message)
+
+    def simulate(self):
+        self.log_event("Simulation started")
+
+
+        self.log_event("Simulation ended")
+
+        self.log_file.close()
